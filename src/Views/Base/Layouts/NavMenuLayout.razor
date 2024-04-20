@@ -1,0 +1,21 @@
+@inherits LayoutComponentBase
+
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <NavMenu>
+        <NavBarBrand>
+            <SectionOutlet SectionId="NavBarGovernmentSection"/>
+        </NavBarBrand>
+        <NavBarItems>
+            <SectionOutlet SectionId="NavBarItemsSection"/>
+        </NavBarItems>
+    </NavMenu>
+    <MudMainContent Class="pt-16 px-16 pb-16">
+        <MudContainer>
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>

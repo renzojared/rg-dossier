@@ -1,0 +1,71 @@
+﻿@inherits LayoutComponentBase
+
+<MudThemeProvider/>
+<MudDialogProvider/>
+<MudSnackbarProvider/>
+
+<MudLayout>
+    <MudAppBar Elevation="1" Dense="true">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+        <MudText>Gobierno Regional del Callao</MudText>
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Material.Filled.EmojiPeople" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor" Target="_blank" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="@open" ClipMode="@DrawerClipMode.Always" Breakpoint="@Breakpoint.Lg" PreserveOpenState="false" Elevation="1" Variant="@DrawerVariant.Mini">
+        <MudNavMenu>
+            <MudNavLink Href="/a" Icon="@Icons.Material.Filled.Security">Seguridad</MudNavLink>
+            <MudNavGroup Icon="@Icons.Material.Filled.AppRegistration" Title="Registros" HideExpandIcon="true" Expanded="true">
+                <MudNavLink Icon="@Icons.Material.Filled.TextFields" Href="/users">Registro expediente</MudNavLink>
+            </MudNavGroup>
+            <MudNavGroup Icon="@Icons.Material.Filled.Home" Title="Consultas" HideExpandIcon="true" Expanded="true">
+                <MudNavLink Icon="@Icons.Material.Filled.SdCard" Href="/users">Consulta expediente</MudNavLink>
+            </MudNavGroup>
+            <MudNavLink Href="/a" Icon="@Icons.Material.Filled.Yard">Mantenedor</MudNavLink>
+        </MudNavMenu>
+    </MudDrawer>
+    <MudMainContent Class="pt-16 px-16">
+        <MudContainer Class="mt-6">
+            <MudGrid>
+                <MudItem xs="12">
+                    <MudTextField Mask="@(new PatternMask("0000 0000 0000 0000"))" Label="Credit Cardd Number"
+                                  @bind-Value="creditCard"  Variant="@Variant.Text" Clearable />
+                </MudItem>
+                <MudItem xs="4">
+                    <MudTextField Mask="@(new DateMask("MM/YY", 'Y', 'M'))" Label="Expires"
+                                  @bind-Value="expiration"  Variant="@Variant.Text" />
+                </MudItem>
+                <MudItem xs="4"/>
+                <MudItem xs="4">
+                    <MudTextField Mask="@(new PatternMask("000"))" Label="CVC"
+                                  @bind-Value="cvc"  Variant="@Variant.Text" />
+                </MudItem>
+                <MudItem xs="12">
+                    Credit Card Number: <b>@creditCard</b><br/>
+                    Expiration Date: <b>@expiration</b><br/>
+                    CVC: <b>@cvc</b>
+                </MudItem>
+            </MudGrid>
+            </MudContainer>
+    </MudMainContent>
+    <MudAppBar Elevation="1" Dense="true" Bottom="true" Style="align-content: center">
+        <MudText>
+            Todos los derechos reservadoss
+        </MudText>
+        <MudSpacer/>
+        <MudIconButton Icon="@Icons.Custom.Brands.Apple" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor" Target="_blank"/>
+    </MudAppBar>
+</MudLayout>
+
+
+@code{
+    private string creditCard;
+    private string expiration;
+    private string cvc;
+    bool open = false;
+
+    void ToggleDrawer()
+    {
+        open = !open;
+    }
+
+}

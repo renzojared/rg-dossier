@@ -16,7 +16,7 @@ public static class DependencyContainer
             client.BaseAddress = new Uri(webApiOptions.BaseAddress);
             client.Timeout = TimeSpan.FromSeconds(webApiOptions.TimeOutInSeconds);
         });
-        services.AddHttpClient<ICreateDossierGateway, CreateDossierGateway>();
+        services.AddScoped<ICreateDossierGateway, CreateDossierGateway>();
         return services;
     }
 }

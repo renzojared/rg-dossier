@@ -12,7 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.2"/>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.4" />
+        <PackageReference Include="MudBlazor" Version="6.19.1" />
     </ItemGroup>
 
     <ItemGroup>
@@ -21,6 +22,30 @@
 
     <ItemGroup>
       <Folder Include="wwwroot\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\CommonMessages.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>CommonMessages.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Dossier\CreateDossierMessages.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>CreateDossierMessages.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\CommonMessages.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>CommonMessages.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Dossier\CreateDossierMessages.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>CreateDossierMessages.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

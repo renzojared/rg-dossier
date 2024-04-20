@@ -1,0 +1,17 @@
+@inherits NavMenuLayout
+
+<SectionContent
+    SectionId="NavBarGovernmentSection">
+    <MudText>Gobierno Regional del Callao</MudText>
+    <MudSpacer />
+    <MudIconButton Icon="@Icons.Material.Filled.EmojiPeople" Color="Color.Inherit" Link="https://github.com/MudBlazor/MudBlazor" Target="_blank"/>
+</SectionContent>
+<SectionContent
+    SectionId="NavBarItemsSection">
+    <NavMenuItem Href="/b" Icon="@Icons.Material.Filled.Security" FielValue="Seguridad"/>
+    <MudNavGroup Icon="@Icons.Material.Filled.AppRegistration" Title="Registros" HideExpandIcon="true" Expanded="true">
+        <NavMenuItem Href="/createdossier" Icon="@Icons.Material.Filled.TextFields" FielValue="Registro de expediente"/>
+    </MudNavGroup>
+</SectionContent>
+
+@((RenderFragment)(builder => base.BuildRenderTree(builder)))

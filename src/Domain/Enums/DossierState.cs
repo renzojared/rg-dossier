@@ -2,10 +2,9 @@ namespace Domain.Enums;
 
 public enum DossierState
 {
-    /*
-     * 
-     * Concluido
-     * Definido
-     * 
-     */
+    [Description("Completado")]
+    Completed = 1,
+    [Description("Definido")]
+    Defined = 2
 }
+

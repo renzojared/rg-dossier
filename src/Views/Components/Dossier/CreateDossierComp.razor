@@ -1,0 +1,177 @@
+<EditForm Model="Dossier" OnValidSubmit="Dossier.Save">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <MudGrid>
+        <SubtitleComp Subtitle="Datos Expediente"/>
+        <MudItem xs="12" sm="6" md="6" lg="6">
+            <MudNumericField Label="Materia"
+                             HideSpinButtons="true"
+                             HelperText="Enviar Id"
+                             @bind-Value="Dossier.MatterId"
+                             For="@(() => Dossier.MatterId)">
+            </MudNumericField>
+        </MudItem>
+        <MudItem xs="12" sm="6" md="6" lg="6">
+            <MudTextField Label="Codigo Interno"
+                          HelperText="Codigo Unico Interno"
+                          @bind-Value="Dossier.InternalCode"
+                          For="@(() => Dossier.InternalCode)">
+            </MudTextField>
+        </MudItem>
+        <MudItem xs="12" sm="6" lg="6">
+            <MudNumericField Label="Nro Expediente"
+                             HelperText="Nro que tomará el expediente"
+                             @bind-Value="Dossier.Number"
+                             For="@(() => Dossier.Number)">
+            </MudNumericField>
+        </MudItem>
+        <MudItem xs="12" sm="6" lg="6">
+            <MudNumericField Label="Año"
+                             HelperText="Año de"
+                             @bind-Value="Dossier.Year"
+                             For="@(() => Dossier.Year)">
+            </MudNumericField>
+        </MudItem>
+        <MudItem xs="12" sm="6" lg="6">
+            <MudNumericField Label="Tomo"
+                             HelperText="Nro de Tomo"
+                             @bind-Value="Dossier.VolumeNumber"
+                             For="@(() => Dossier.VolumeNumber)">
+            </MudNumericField>
+        </MudItem>
+        <MudItem xs="12" sm="6" lg="6">
+            <MudNumericField Label="Juzgado"
+                             HelperText="Juzgado Id"
+                             @bind-Value="Dossier.CourtId"
+                             For="@(() => Dossier.CourtId)">
+            </MudNumericField>
+        </MudItem>
+
+        <SubtitleComp Subtitle="Datos Demandante"/>
+        <PersonComp Person="Dossier.Defendant"
+                    SmValue="6"
+                    MdValue="6"
+                    LgValue="6"/>
+
+        <SubtitleComp Subtitle="Datos Demandado"/>
+        <PersonComp Person="Dossier.Plaintiff"
+                    SmValue="6"
+                    MdValue="6"
+                    LgValue="6"/>
+
+        <SubtitleComp Subtitle="Datos Adicionales"/>
+
+        <MudItem xs="12" sm="6" lg="6">
+            <MudSelect T="DossierState"
+                       Label="Estado"
+                       AnchorOrigin="Origin.BottomCenter"
+                       @bind-Value="Dossier.DossierState">
+                @foreach (DossierState state in Enum.GetValues(typeof(DossierState)))
+                {
+                    <MudSelectItem T="DossierState" Value="@state">@state.GetEnumDescription()</MudSelectItem>
+                }
+            </MudSelect>
+        </MudItem>
+        <MudItem xs="12" sm="6" lg="6">
+            <MudDatePicker Label="Fecha de Inicio"
+                           @bind-Date="@Dossier.StartDate"
+                           DisableToolbar="true"/>
+        </MudItem>
+
+        <MudItem xs="12" sm="12" lg="12">
+            <MudButton ButtonType="ButtonType.Submit"
+                       Variant="Variant.Filled"
+                       Color="Color.Secondary"
+                       Class="ml-auto">
+                Create
+            </MudButton>
+        </MudItem>
+
+
+    </MudGrid>
+    @*
+    <MudGrid>
+        <MudItem xs="12" sm="12" lg="12">
+            <MudCard>
+                <MudCardContent>
+                    <MudNumericField Label="Materia"
+                                     HideSpinButtons="true"
+                                     HelperText="Enviar Id"
+                                     @bind-Value="Dossier.MatterId"
+                                     For="@(() => Dossier.MatterId)">
+                    </MudNumericField>
+                    <MudTextField Label="Codigo Interno"
+                                  HelperText="Codigo Unico Interno"
+                                  @bind-Value="Dossier.InternalCode"
+                                  For="@(() => Dossier.InternalCode)">
+                    </MudTextField>
+                    <MudNumericField Label="Nro Expediente"
+                                     HelperText="Nro que tomará el expediente"
+                                     @bind-Value="Dossier.Number"
+                                     For="@(() => Dossier.Number)">
+                    </MudNumericField>
+                    <MudNumericField Label="Año"
+                                     HelperText="Año de"
+                                     @bind-Value="Dossier.Year"
+                                     For="@(() => Dossier.Year)">
+                    </MudNumericField>
+                    <MudNumericField Label="Tomo"
+                                     HelperText="Nro de Tomo"
+                                     @bind-Value="Dossier.VolumeNumber"
+                                     For="@(() => Dossier.VolumeNumber)">
+                    </MudNumericField>
+                    <MudNumericField Label="Juzgado"
+                                     HelperText="Juzgado Id"
+                                     @bind-Value="Dossier.CourtId"
+                                     For="@(() => Dossier.CourtId)">
+                    </MudNumericField>
+                    <MudSelect T="DossierState"
+                               Label="Estado"
+                               AnchorOrigin="Origin.BottomCenter"
+                               @bind-Value="Dossier.DossierState">
+                        @foreach (var state in Enum.GetValues(typeof(DossierState)))
+                        {
+                            var stateValue = (DossierState)state;
+                            <MudSelectItem T="DossierState" Value="@stateValue"/>
+                        }
+                    </MudSelect>
+                </MudCardContent>
+                <PersonComp SectionDescription="Demandando"
+                            Person="Dossier.Defendant"/>
+                <PersonComp SectionDescription="Demandante"
+                            Person="Dossier.Plaintiff"/>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit"
+                               Variant="Variant.Filled"
+                               Color="Color.Secondary"
+                               Class="ml-auto">
+                        Create
+                    </MudButton>
+                </MudCardActions>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+    
+    <MudGrid>
+        <MudItem xs="12" sm="6">
+            <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=12 sm=6</MudPaper>
+        </MudItem>
+        <MudItem xs="12" sm="6">
+            <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=12 sm=6</MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="3">
+            <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=6 sm=3</MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="3">
+            <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=6 sm=3</MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="3">
+            <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=6 sm=3</MudPaper>
+        </MudItem>
+        <MudItem xs="6" sm="3">
+            <MudPaper Class="d-flex align-center justify-center mud-width-full py-8">xs=6 sm=3</MudPaper>
+        </MudItem>
+    </MudGrid>
+    *@
+</EditForm>

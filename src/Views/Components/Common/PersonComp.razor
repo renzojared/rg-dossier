@@ -1,0 +1,31 @@
+<MudItem xs="12" sm="@SmValue" lg="@LgValue">
+    <MudSelect T="DocumentType"
+               Label="Tipo Documento"
+               AnchorOrigin="Origin.BottomCenter"
+               @bind-Value="Person.DocumentType"
+               For="@(() => Person.DocumentType)">
+        @foreach (DocumentType documentType in Enum.GetValues(typeof(DocumentType)))
+        {
+            <MudSelectItem T="DocumentType" Value="@documentType">@documentType.GetEnumDescription()</MudSelectItem>
+        }
+    </MudSelect>
+</MudItem>
+<MudItem xs="12" sm="@SmValue" lg="@LgValue">
+    <MudTextField Label="Nro doc"
+                  HelperText="Número documento"
+                  @bind-Value="Person.DocumentNumber"
+                  For="@(() => Person.DocumentNumber)">
+    </MudTextField>
+</MudItem>
+<MudItem xs="12" sm="@SmValue" lg="@LgValue">
+    <MudTextField Label="Nombres"
+                  @bind-Value="Person.Names"
+                  For="@(() => Person.Names)">
+    </MudTextField>
+</MudItem>
+<MudItem xs="12" sm="@SmValue" lg="@LgValue">
+    <MudTextField Label="Apellidos"
+                  @bind-Value="Person.Surnames"
+                  For="@(() => Person.Surnames)">
+    </MudTextField>
+</MudItem>

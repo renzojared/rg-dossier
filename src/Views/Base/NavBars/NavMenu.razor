@@ -1,0 +1,10 @@
+<MudAppBar Elevation="1" Dense="true">
+    <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+    @NavBarBrand
+</MudAppBar>
+<MudDrawer @bind-Open="@_open" ClipMode="@DrawerClipMode.Always" Breakpoint="@Breakpoint.Lg" PreserveOpenState="false" Elevation="1" Variant="@DrawerVariant.Mini">
+    <MudNavMenu>
+        @NavBarItems
+    </MudNavMenu>
+</MudDrawer>
+
