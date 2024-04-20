@@ -3,6 +3,7 @@ using Domain.DTOs.Common;
 namespace Domain.DTOs.Dossiers.CreateDossier;
 
 public record CreateDossierRequest(
+    int OverallProcessId,
     int MatterId,
     string InternalCode,
     int Number,

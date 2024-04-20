@@ -1,5 +1,6 @@
 using System.Reflection;
 using Application.Dossiers.Commands.CreateDossier;
+using Application.OverallProcesses.Queries.GetAllOverallProcesses;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -10,6 +11,7 @@ public static class DependencyContainer
         services.AddHandlers();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScoped<IInputPort<CreateDossierInstance>, CreateDossierUseCase>();
+        services.AddScoped<IInputPort, GetAllOverallProcessesUseCase>();
         
         return services;
     }

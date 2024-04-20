@@ -2,8 +2,11 @@ namespace Domain.Entities;
 
 public class Dossier : BaseAuditableEntity
 {
-    public int MatterId { get; set; }
-    public Matter Matter { get; set; }
+    public int? MatterId { get; set; }
+    public Matter? Matter { get; set; }
+
+    public int OverallProcessId { get; set; }
+    public OverallProcess OverallProcess { get; set; }
 
     public DossierState State { get; set; }
     public string InternalCode { get; set; }

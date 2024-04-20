@@ -21,5 +21,18 @@ public class DossierConfiguration : IEntityTypeConfiguration<Dossier>
             .WithMany()
             .HasForeignKey(s => s.ResponsibleId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder
+            .HasOne(s => s.OverallProcess)
+            .WithMany()
+            .HasForeignKey(s => s.OverallProcessId)
+            .IsRequired();
+
+        builder
+            .HasOne(s => s.Matter)
+            .WithMany()
+            .HasForeignKey(s => s.MatterId)
+            .IsRequired(false);
+
     }
 }

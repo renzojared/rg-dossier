@@ -1,6 +1,5 @@
 using Application.Dossiers.Commands.CreateDossier;
 using Domain.DTOs.Dossiers.CreateDossier;
-using Domain.ValueObjects;
 
 namespace WebApi.Dossiers.CreateDossier;
 
