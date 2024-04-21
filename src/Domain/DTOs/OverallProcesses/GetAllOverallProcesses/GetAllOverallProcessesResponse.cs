@@ -1,10 +1,8 @@
-using Domain.DTOs.Matters.GetAllMatters;
-
 namespace Domain.DTOs.OverallProcesses.GetAllOverallProcesses;
 
-public class GetAllOverallProcessesResponse
+public record GetAllOverallProcessesResponse(List<OverallProcessesDto> OverallProcesses);
+
+public class OverallProcessesDto : SelectDto
 {
-    public int Id { get; init; }
-    public string Description { get; init; }
-    public List<GetAllMattersResponse> Matters { get; init; } = [];
+    public List<SelectDto> Matters { get; set; } = [];
 }

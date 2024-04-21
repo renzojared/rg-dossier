@@ -1,6 +1,9 @@
 using System.Reflection;
+using Application.Courts.Queries.GetAllCourts;
 using Application.Dossiers.Commands.CreateDossier;
 using Application.OverallProcesses.Queries.GetAllOverallProcesses;
+using Application.Persons.Queries.GetAllPersons;
+using Domain.DTOs.Courts.GetAllCourts;
 
 namespace Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +14,9 @@ public static class DependencyContainer
         services.AddHandlers();
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
         services.AddScoped<IInputPort<CreateDossierInstance>, CreateDossierUseCase>();
-        services.AddScoped<IInputPort, GetAllOverallProcessesUseCase>();
+        services.AddScoped<IInputPort<GetAllOverallProcessesInstance>, GetAllOverallProcessesUseCase>();
+        services.AddScoped<IInputPort<GetAllCourtsInstance>, GetAllCourtsUserCase>();
+        services.AddScoped<IInputPort<GetAllPersonsInstance>, GetAllPersonsUseCase>();
         
         return services;
     }

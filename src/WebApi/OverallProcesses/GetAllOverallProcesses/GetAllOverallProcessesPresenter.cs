@@ -2,10 +2,11 @@ using Domain.DTOs.OverallProcesses.GetAllOverallProcesses;
 
 namespace WebApi.OverallProcesses.GetAllOverallProcesses;
 
-internal class GetAllOverallProcessesPresenter : Presenter, IOutputPort<List<GetAllOverallProcessesResponse>>
+internal class GetAllOverallProcessesPresenter : Presenter, IOutputPort<GetAllOverallProcessesResponse>
 {
-    public Task Default(List<GetAllOverallProcessesResponse>? response)
+    public Task Default(GetAllOverallProcessesResponse? response)
     {
         Result = Results.Ok(response);
-        return Task.CompletedTask;    }
+        return Task.CompletedTask;
+    }
 }

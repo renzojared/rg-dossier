@@ -1,3 +1,5 @@
+using Domain.DTOs.Persons;
+
 namespace Views.ViewModels.Common;
 
 public class PersonVm

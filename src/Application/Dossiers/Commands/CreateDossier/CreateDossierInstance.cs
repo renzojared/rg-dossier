@@ -1,5 +1,6 @@
 using Domain.DTOs.Common;
 using Domain.DTOs.Dossiers.CreateDossier;
+using Domain.DTOs.Persons;
 
 namespace Application.Dossiers.Commands.CreateDossier;
 

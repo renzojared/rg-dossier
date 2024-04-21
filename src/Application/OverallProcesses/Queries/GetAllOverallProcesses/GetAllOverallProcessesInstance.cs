@@ -8,7 +8,7 @@ public class GetAllOverallProcessesInstance
     {
         public Mapping()
         {
-            CreateMap<OverallProcess, GetAllOverallProcessesResponse>().ReverseMap();
+            CreateMap<OverallProcess, OverallProcessesDto>().ReverseMap();
         }
     }
 }

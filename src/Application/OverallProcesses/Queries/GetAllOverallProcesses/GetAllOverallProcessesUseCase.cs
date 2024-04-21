@@ -4,10 +4,10 @@ namespace Application.OverallProcesses.Queries.GetAllOverallProcesses;
 
 internal class GetAllOverallProcessesUseCase(
     IQueriesRepository queriesRepository,
-    IOutputPort<List<GetAllOverallProcessesResponse>> outputPort,
-    IMapper mapper) : IInputPort
+    IOutputPort<GetAllOverallProcessesResponse> outputPort,
+    IMapper mapper) : IInputPort<GetAllOverallProcessesInstance>
 {
-    public async Task Execute(CancellationToken cancellationToken)
+    public async Task Execute(GetAllOverallProcessesInstance instance, CancellationToken cancellationToken)
     {
         try
         {
@@ -15,9 +15,9 @@ internal class GetAllOverallProcessesUseCase(
                 .Include(s => s.Matters)
                 .ToListAsync(cancellationToken);
 
-            var result = mapper.Map<List<GetAllOverallProcessesResponse>>(processes);
+            var mapProcesses = mapper.Map<List<OverallProcessesDto>>(processes);
 
-            await outputPort.Default(result);
+            await outputPort.Default(new GetAllOverallProcessesResponse(mapProcesses));
         }
         catch (Exception e)
         {

@@ -1,5 +1,3 @@
-using Domain.DTOs.Matters.GetAllMatters;
-
 namespace Application.Matters.Queries.GetAllMatters;
 
 public class GetAllMattersInstance
@@ -8,7 +6,7 @@ public class GetAllMattersInstance
     {
         public Mapping()
         {
-            CreateMap<Matter, GetAllMattersResponse>().ReverseMap();
+            CreateMap<Matter, SelectDto>().ReverseMap();
         }
     }
 }

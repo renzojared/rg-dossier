@@ -4,9 +4,9 @@ namespace Application.Matters.Queries.GetAllMatters;
 
 internal class GetAllMatterUseCase(
     IQueriesRepository _queriesRepository,
-    IOutputPort<GetAllMattersResponse?> _outputPort) : IInputPort
+    IOutputPort<GetAllMattersResponse?> _outputPort) : IInputPort<GetAllMattersInstance>
 {
-    public async Task Execute(CancellationToken cancellationToken)
+    public async Task Execute(GetAllMattersInstance instance, CancellationToken cancellationToken)
     {
         try
         {

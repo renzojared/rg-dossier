@@ -9,7 +9,11 @@ public static class Endpoints
     //Entity
     private const string Dossier = $"{nameof(Dossier)}";
     private const string OverallProcess = $"{nameof(OverallProcess)}";
+    private const string Court = $"{nameof(Court)}";
+    private const string Person = $"{nameof(Person)}";
     //Action
     public const string CreateDossier = $"{Api}/{Dossier}/{Create}";
     public const string GetAllOverallProcess = $"{Api}/{OverallProcess}/{GetAll}";
+    public const string GetAllCourts = $"{Api}/{Court}/{GetAll}";
+    public const string GetAllPersons = $"{Api}/{Person}/{GetAll}";
 }
