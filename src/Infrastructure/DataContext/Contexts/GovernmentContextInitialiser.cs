@@ -33,68 +33,92 @@ public class GovernmentContextInitialiser(
         //Default data
         if (!context.OverallProcesses.Any())
         {
-            List<OverallProcess> initialOverallProcesses =
-            [
-                new OverallProcess { Description = "Administrativo Municipal" },
-                new OverallProcess { Description = "Anulación de Laudo" },
-                new OverallProcess { Description = "Arbitraje" },
-                new OverallProcess { Description = "Civiles - Callao" },
-                new OverallProcess { Description = "Civiles - Disa" },
-                new OverallProcess { Description = "Civiles - Lima" },
-                new OverallProcess { Description = "Coactivo Conadis" },
-                new OverallProcess { Description = "Coactivo Essalud" }
-            ];
-            
-            await context.OverallProcesses.AddRangeAsync(initialOverallProcesses);
+            var overallProcesses = InitialOverallProcesses();
+
+            await context.OverallProcesses.AddRangeAsync(overallProcesses);
 
             if (!context.Matters.Any())
             {
                 await context.Matters.AddRangeAsync([
-                    new Matter { Description = "Administrativo Municipal", OverallProcess = initialOverallProcesses[0] },
-                    new Matter { Description = "Anulación de Laudo", OverallProcess = initialOverallProcesses[0] },
-                    new Matter { Description = "Arbitraje", OverallProcess = initialOverallProcesses[0] },
-                    new Matter { Description = "Civiles - Callao", OverallProcess = initialOverallProcesses[0] },
-                    new Matter { Description = "Civiles - Disa", OverallProcess = initialOverallProcesses[1] },
-                    new Matter { Description = "Civiles - Lima", OverallProcess = initialOverallProcesses[1] },
-                    new Matter { Description = "Coactivo Conadis", OverallProcess = initialOverallProcesses[1] },
-                    new Matter { Description = "Coactivo Essalud", OverallProcess = initialOverallProcesses[1] }
+                    new Matter
+                    {
+                        Description = "Administrativo Municipal", OverallProcess = overallProcesses[0]
+                    },
+                    new Matter { Description = "Anulación de Laudo", OverallProcess = overallProcesses[0] },
+                    new Matter { Description = "Arbitraje", OverallProcess = overallProcesses[0] },
+                    new Matter { Description = "Civiles - Callao", OverallProcess = overallProcesses[0] },
+                    new Matter { Description = "Civiles - Disa", OverallProcess = overallProcesses[1] },
+                    new Matter { Description = "Civiles - Lima", OverallProcess = overallProcesses[1] },
+                    new Matter { Description = "Coactivo Conadis", OverallProcess = overallProcesses[1] },
+                    new Matter { Description = "Coactivo Essalud", OverallProcess = overallProcesses[1] }
                 ]);
             }
         }
 
         if (!context.Courts.Any())
         {
-            await context.Courts.AddRangeAsync([
-                new Court { Name = "Juzgado de Lima" },
-                new Court { Name = "Juzgado de Huacho" },
-                new Court { Name = "Juzago I" },
-                new Court { Name = "Juzgado II" },
-                new Court { Name = "Juzgado Internacional" },
-            ]);
+            await context.Courts.AddRangeAsync(InitialCourts());
         }
 
         if (!context.Persons.Any())
         {
-            await context.Persons.AddRangeAsync([
-                new Person
-                {
-                    DocumentType = DocumentType.Nic, DocumentNumber = "12345678", FirstName = "Renzo",
-                    PaternalSurname = "Jared", Email = "rjared@sample"
-                },
-                new Person
-                {
-                    DocumentType = DocumentType.ForeignCard, DocumentNumber = "123456789", FirstName = "Emilia",
-                    PaternalSurname = "Luana", Email = "eluana@sample"
-                },
-                new Person
-                {
-                    DocumentType = DocumentType.Passport, DocumentNumber = "1234567890", FirstName = "Karina",
-                    PaternalSurname = "Mercedes", Email = "kmercedes@sample"
-                },
-            ]);
+            var persons = InitialPersons();
+            await context.Persons.AddRangeAsync(persons);
+
+            if (!context.Responsibles.Any())
+                await context.Responsibles.AddAsync(new Responsible { Person = persons[0] });
         }
 
         //TODO: USE DOCKER
         await context.SaveChangesAsync();
+    }
+
+    private List<OverallProcess> InitialOverallProcesses()
+    {
+        return
+        [
+            new OverallProcess { Description = "Administrativo Municipal" },
+            new OverallProcess { Description = "Anulación de Laudo" },
+            new OverallProcess { Description = "Arbitraje" },
+            new OverallProcess { Description = "Civiles - Callao" },
+            new OverallProcess { Description = "Civiles - Disa" },
+            new OverallProcess { Description = "Civiles - Lima" },
+            new OverallProcess { Description = "Coactivo Conadis" },
+            new OverallProcess { Description = "Coactivo Essalud" }
+        ];
+    }
+
+    private List<Court> InitialCourts()
+    {
+        return
+        [
+            new Court { Name = "Juzgado de Lima" },
+            new Court { Name = "Juzgado de Huacho" },
+            new Court { Name = "Juzago I" },
+            new Court { Name = "Juzgado II" },
+            new Court { Name = "Juzgado Internacional" },
+        ];
+    }
+
+    private List<Person> InitialPersons()
+    {
+        return
+        [
+            new Person
+            {
+                DocumentType = DocumentType.Nic, DocumentNumber = "12345678", FirstName = "Renzo",
+                PaternalSurname = "Jared", Email = "rjared@sample"
+            },
+            new Person
+            {
+                DocumentType = DocumentType.ForeignCard, DocumentNumber = "123456789", FirstName = "Emilia",
+                PaternalSurname = "Luana", Email = "eluana@sample"
+            },
+            new Person
+            {
+                DocumentType = DocumentType.Passport, DocumentNumber = "1234567890", FirstName = "Karina",
+                PaternalSurname = "Mercedes", Email = "kmercedes@sample"
+            },
+        ];
     }
 }

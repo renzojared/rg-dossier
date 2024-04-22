@@ -14,13 +14,7 @@ public class Dossier : BaseAuditableEntity
 
     public int CourtId { get; set; }
     public Court Court { get; set; }
-
-    public int PlaintiffId { get; set; }
-    public Person Plaintiff { get; set; }
-
-    public int DefendantId { get; set; }
-    public Person Defendant { get; set; }
-    
     public int ResponsibleId { get; set; }
-    public Person Responsible { get; set; }
+    public Responsible Responsible { get; set; }
+    public HashSet<DossierPerson> DossierPersons { get; } = [];
 }

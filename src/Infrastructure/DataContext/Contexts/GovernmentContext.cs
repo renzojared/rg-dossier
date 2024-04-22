@@ -14,9 +14,11 @@ public class GovernmentContext(IOptions<DbOptions> options) : IdentityDbContext<
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
 
-    public DbSet<Dossier> Dossiers => Set<Dossier>();
     public DbSet<Court> Courts => Set<Court>();
+    public DbSet<Dossier> Dossiers => Set<Dossier>();
+    public DbSet<DossierPerson> DossierPersons => Set<DossierPerson>();
     public DbSet<Matter> Matters => Set<Matter>();
     public DbSet<OverallProcess> OverallProcesses => Set<OverallProcess>();
     public DbSet<Person> Persons => Set<Person>();
+    public DbSet<Responsible> Responsibles => Set<Responsible>();
 }

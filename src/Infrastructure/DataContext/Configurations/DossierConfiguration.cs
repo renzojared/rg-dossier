@@ -5,24 +5,6 @@ public class DossierConfiguration : IEntityTypeConfiguration<Dossier>
     public void Configure(EntityTypeBuilder<Dossier> builder)
     {
         builder
-            .HasOne(s => s.Plaintiff)
-            .WithMany()
-            .HasForeignKey(s => s.PlaintiffId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder
-            .HasOne(s => s.Defendant)
-            .WithMany()
-            .HasForeignKey(s => s.DefendantId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder
-            .HasOne(s => s.Responsible)
-            .WithMany()
-            .HasForeignKey(s => s.ResponsibleId)
-            .OnDelete(DeleteBehavior.Restrict);
-
-        builder
             .HasOne<OverallProcess>()
             .WithMany()
             .HasForeignKey(s => s.OverallProcessId)
@@ -31,6 +13,13 @@ public class DossierConfiguration : IEntityTypeConfiguration<Dossier>
         builder
             .HasOne<Matter>()
             .WithMany()
-            .HasForeignKey(s => s.MatterId);
+            .HasForeignKey(s => s.MatterId)
+            .IsRequired(false);
+
+        builder
+            .HasMany(s => s.DossierPersons)
+            .WithOne(s => s.Dossier)
+            .HasForeignKey(s => s.DossierId)
+            .OnDelete(DeleteBehavior.NoAction);
     }
 }

@@ -15,18 +15,18 @@ public class CreateDossierVm(
     IMapper mapper)
 {
     public CreateDossierResponse Response { get; private set; }
-    public int? OverallProcessId { get; set; }
     public int? MatterId { get; set; }
+    public int? OverallProcessId { get; set; }
+    public DossierState DossierState { get; set; } = DossierState.Completed;
     public string InternalCode { get; set; }
     public int Number { get; set; }
     public DateTime? YearPicker { get; set; } = DateTime.Today;
     public int? Year { get => YearPicker?.Year;}
+    public DateTime? StartDate { get; set; } = DateTime.Today;
     public int? CourtId { get; set; }
     public int? ResponsibleId { get; set; }
     public PersonVm Plaintiff { get; set; } = new();
     public PersonVm Defendant { get; set; } = new();
-    public DossierState DossierState { get; set; } = DossierState.Completed;
-    public DateTime? StartDate { get; set; } = DateTime.Today;
 
     public async Task Save()
     {

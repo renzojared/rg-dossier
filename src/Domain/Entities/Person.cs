@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace Domain.Entities;
 
 public class Person : BaseAuditableEntity
@@ -13,4 +11,5 @@ public class Person : BaseAuditableEntity
     public string FullName => $"{FirstName} {SecondName} {PaternalSurname} {MaternalSurname}";
     public string Email { get; set; }
     public string BusinessName { get; set; }
+    public HashSet<DossierPerson> DossierPersons { get; } = [];
 }

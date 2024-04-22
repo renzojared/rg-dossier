@@ -10,7 +10,7 @@ public partial class CreateDossierComp
     public CreateDossierVm Dossier { get; set; }
     public List<OverallProcessesDto> OverallProcesses { get; set; } = [];
     public List<NameSelectDto> Courts { get; set; } = [];
-    public List<FullNameSelectDto> Responsibles { get; set; } = [];
+    public IEnumerable<FullNameSelectDto> Responsibles { get; set; } = [];
     public List<SelectDto> MattersToDisplay { get; set; } = [];
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -24,7 +24,9 @@ public partial class CreateDossierComp
             Courts = courts.Courts;
 
             var responsibles = await Dossier.GetAllPersons();
-            Responsibles = responsibles.Persons;
+
+            Responsibles = responsibles.Persons
+                .Select(s => new FullNameSelectDto { FullName = $"Dr. {s.FullName}", Id = s.Id });
         }
         catch (Exception e)
         {

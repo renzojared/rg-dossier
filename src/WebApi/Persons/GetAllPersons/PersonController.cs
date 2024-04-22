@@ -18,3 +18,4 @@ public class PersonController(
         return ((Presenter)outputPort).Result;
     }
 }
+//TODO: Rename Endpoint to get all responsibles only or create other endpoint or add filer

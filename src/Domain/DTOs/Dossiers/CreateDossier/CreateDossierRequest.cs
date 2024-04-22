@@ -3,13 +3,13 @@ using Domain.DTOs.Persons;
 namespace Domain.DTOs.Dossiers.CreateDossier;
 
 public record CreateDossierRequest(
-    DossierState DossierState,
-    DateTime StartDate,
+    int? MatterId,
     int OverallProcessId,
-    int MatterId,
+    DossierState DossierState,
     string InternalCode,
     int Number,
     int Year,
+    DateTime StartDate,
     int CourtId,
     int ResponsibleId,
     PersonDto Plaintiff,

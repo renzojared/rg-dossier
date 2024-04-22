@@ -4,17 +4,22 @@ namespace Application.Persons.Queries.GetAllPersons;
 
 internal class GetAllPersonsUseCase(
     IQueriesRepository queriesRepository,
-    IOutputPort<GetAllPersonsResponse> outputPort,
-    IMapper mapper) : IInputPort<GetAllPersonsInstance>
+    IOutputPort<GetAllPersonsResponse> outputPort) : IInputPort<GetAllPersonsInstance>
 {
     public async Task Execute(GetAllPersonsInstance instance, CancellationToken cancellationToken)
     {
         try
         {
-            var persons = await queriesRepository.Persons
+            var persons = await queriesRepository.Responsibles
+                .Include(s => s.Person)
+                .Select(s => new FullNameSelectDto
+                {
+                    Id = s.Id,
+                    FullName = s.Person.FullName,
+                })
                 .ToListAsync(cancellationToken);
-            var mapPersons = mapper.Map<List<FullNameSelectDto>>(persons);
-            await outputPort.Default(new GetAllPersonsResponse(mapPersons));
+
+            await outputPort.Default(new GetAllPersonsResponse(persons));
         }
         catch (Exception e)
         {
