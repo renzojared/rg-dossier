@@ -1,6 +1,4 @@
-using Domain.DTOs.Courts;
 using Domain.DTOs.OverallProcesses.GetAllOverallProcesses;
-using Microsoft.AspNetCore.Components.Web;
 using Views.ViewModels.Dossier;
 
 namespace Views.Components.Dossier;
@@ -8,13 +6,14 @@ namespace Views.Components.Dossier;
 public partial class CreateDossierComp
 {
     [Parameter]
+    [EditorRequired]
     public CreateDossierVm Dossier { get; set; }
     public List<OverallProcessesDto> OverallProcesses { get; set; } = [];
     public List<NameSelectDto> Courts { get; set; } = [];
     public List<FullNameSelectDto> Responsibles { get; set; } = [];
     public List<SelectDto> MattersToDisplay { get; set; } = [];
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         try
         {

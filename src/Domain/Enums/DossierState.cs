@@ -1,5 +1,6 @@
 namespace Domain.Enums;
 
+[Description("Estado expediente")]
 public enum DossierState
 {
     [Description("Completado")]
@@ -7,4 +8,3 @@ public enum DossierState
     [Description("Definido")]
     Defined = 2
 }
-

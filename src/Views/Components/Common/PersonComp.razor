@@ -1,6 +1,6 @@
 <MudItem xs="12" sm="@SmValue" lg="@LgValue">
     <MudSelect T="DocumentType"
-               Label="Tipo Documento"
+               Label="@(Person.DocumentType.GetTitleEnumDescription())"
                AnchorOrigin="Origin.BottomCenter"
                @bind-Value="Person.DocumentType"
                For="@(() => Person.DocumentType)">

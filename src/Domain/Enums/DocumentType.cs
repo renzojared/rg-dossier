@@ -1,5 +1,6 @@
 namespace Domain.Enums;
 
+[Description("Tipo documento")]
 public enum DocumentType
 {
     [Description("DNI")]
