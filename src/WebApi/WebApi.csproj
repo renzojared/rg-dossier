@@ -16,7 +16,6 @@
 
     <ItemGroup>
       <Folder Include="Dossiers\GetDossierDetail\" />
-      <Folder Include="Dossiers\GetDossierReport\" />
       <Folder Include="Dossiers\GetDossierTracking\" />
     </ItemGroup>
 

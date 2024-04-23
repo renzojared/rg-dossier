@@ -24,7 +24,6 @@ internal class CreateDossierUseCase : IInputPort<CreateDossierInstance>
         catch (Exception e)
         {
             await _outputPort.Error(e);
-            Console.WriteLine(e);
         }
     }
 }

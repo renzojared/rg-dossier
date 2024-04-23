@@ -21,5 +21,9 @@ public class DossierConfiguration : IEntityTypeConfiguration<Dossier>
             .WithOne(s => s.Dossier)
             .HasForeignKey(s => s.DossierId)
             .OnDelete(DeleteBehavior.NoAction);
+
+        builder
+            .Property(s => s.EndDate)
+            .IsRequired(false);
     }
 }

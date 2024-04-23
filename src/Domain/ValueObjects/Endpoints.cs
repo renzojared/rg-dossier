@@ -6,6 +6,7 @@ public static class Endpoints
     //Common
     private const string Create = $"{nameof(Create)}";
     private const string GetAll = $"{nameof(GetAll)}";
+    private const string Report = $"{nameof(Report)}";
     //Entity
     private const string Dossier = $"{nameof(Dossier)}";
     private const string OverallProcess = $"{nameof(OverallProcess)}";
@@ -16,4 +17,5 @@ public static class Endpoints
     public const string GetAllOverallProcess = $"{Api}/{OverallProcess}/{GetAll}";
     public const string GetAllCourts = $"{Api}/{Court}/{GetAll}";
     public const string GetAllPersons = $"{Api}/{Person}/{GetAll}";
+    public const string GetReportDossier = $"{Api}/{Dossier}/{Report}";
 }

@@ -8,8 +8,10 @@ public class Person : BaseAuditableEntity
     public string SecondName { get; set; }
     public string PaternalSurname { get; set; }
     public string MaternalSurname { get; set; }
-    public string FullName => $"{FirstName} {SecondName} {PaternalSurname} {MaternalSurname}";
     public string Email { get; set; }
     public string BusinessName { get; set; }
     public HashSet<DossierPerson> DossierPersons { get; } = [];
+    public string OnlyNames => $"{FirstName} {SecondName}";
+    public string OnlySurnames => $"{PaternalSurname} {MaternalSurname}";
+    public string FullName => $"{FirstName} {SecondName} {PaternalSurname} {MaternalSurname}";
 }

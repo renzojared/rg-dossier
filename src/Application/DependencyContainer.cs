@@ -1,6 +1,7 @@
 using System.Reflection;
 using Application.Courts.Queries.GetAllCourts;
 using Application.Dossiers.Commands.CreateDossier;
+using Application.Dossiers.Queries.GetDossierReport;
 using Application.OverallProcesses.Queries.GetAllOverallProcesses;
 using Application.Persons.Queries.GetAllPersons;
 using Domain.DTOs.Courts.GetAllCourts;
@@ -17,6 +18,7 @@ public static class DependencyContainer
         services.AddScoped<IInputPort<GetAllOverallProcessesInstance>, GetAllOverallProcessesUseCase>();
         services.AddScoped<IInputPort<GetAllCourtsInstance>, GetAllCourtsUserCase>();
         services.AddScoped<IInputPort<GetAllPersonsInstance>, GetAllPersonsUseCase>();
+        services.AddScoped<IInputPort<GetDossierReportInstance>, GetDossierReportUseCase>();
         
         return services;
     }
