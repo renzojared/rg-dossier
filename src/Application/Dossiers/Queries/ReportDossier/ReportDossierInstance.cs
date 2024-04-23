@@ -1,8 +1,8 @@
-using Domain.DTOs.Dossiers.GetDossierReport;
+using Domain.DTOs.Dossiers.ReportDossier;
 
-namespace Application.Dossiers.Queries.GetDossierReport;
+namespace Application.Dossiers.Queries.ReportDossier;
 
-public class GetDossierReportInstance
+public class ReportDossierInstance
 {
     public int OverallProcessId { get; set; }
     public int MatterId { get; set; }
@@ -23,9 +23,9 @@ public class GetDossierReportInstance
     public int Year { get; set; }
     public DossierState DossierState { get; set; }
     
-    public GetDossierReportRequest Request { get; private set; }
+    public ReportDossierRequest Request { get; private set; }
 
-    public GetDossierReportInstance(GetDossierReportRequest request)
+    public ReportDossierInstance(ReportDossierRequest request)
     {
         OverallProcessId = request.FilterGroup?.OverallProcessId ?? 0;
         MatterId = request.FilterGroup?.MatterId ?? 0;

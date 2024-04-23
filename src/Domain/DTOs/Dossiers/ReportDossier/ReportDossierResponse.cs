@@ -1,6 +1,6 @@
-namespace Domain.DTOs.Dossiers.GetDossierReport;
+namespace Domain.DTOs.Dossiers.ReportDossier;
 
-public record GetDossierReportResponse(IEnumerable<ReportDossierResultDto> reportDossierResultDtos);
+public record ReportDossierResponse(IEnumerable<ReportDossierResultDto> reportDossierResultDtos);
 
 public record ReportDossierResultDto(
     int Id,

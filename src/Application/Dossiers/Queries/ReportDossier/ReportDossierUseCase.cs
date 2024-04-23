@@ -1,12 +1,12 @@
-using Domain.DTOs.Dossiers.GetDossierReport;
+using Domain.DTOs.Dossiers.ReportDossier;
 
-namespace Application.Dossiers.Queries.GetDossierReport;
+namespace Application.Dossiers.Queries.ReportDossier;
 
-internal class GetDossierReportUseCase(
-    IOutputPort<GetDossierReportResponse> outputPort,
-    IQueriesRepository queriesRepository) : IInputPort<GetDossierReportInstance>
+internal class ReportDossierUseCase(
+    IOutputPort<ReportDossierResponse> outputPort,
+    IQueriesRepository queriesRepository) : IInputPort<ReportDossierInstance>
 {
-    public async Task Execute(GetDossierReportInstance instance, CancellationToken cancellationToken)
+    public async Task Execute(ReportDossierInstance instance, CancellationToken cancellationToken)
     {
         try
         {
@@ -66,7 +66,7 @@ internal class GetDossierReportUseCase(
                         .Select(s => s.Person.FullName)
                         .FirstOrDefault());
 
-            await outputPort.Default(new GetDossierReportResponse(result));
+            await outputPort.Default(new ReportDossierResponse(result));
         }
         catch (Exception e)
         {
