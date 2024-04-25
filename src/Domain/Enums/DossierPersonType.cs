@@ -1,5 +1,6 @@
 namespace Domain.Enums;
 
+[Description("Tipo persona expediente")]
 public enum DossierPersonType
 {
     [Description("Demandante")]

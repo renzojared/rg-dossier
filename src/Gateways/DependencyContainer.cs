@@ -1,6 +1,8 @@
 using Gateways.Implementations.Courts;
+using Gateways.Implementations.Dossiers;
 using Gateways.Implementations.Persons;
 using Gateways.Services.Courts;
+using Gateways.Services.Dossiers;
 using Gateways.Services.Persons;
 using Microsoft.Extensions.Configuration;
 
@@ -24,6 +26,8 @@ public static class DependencyContainer
         services.AddScoped<IGetAllOverallProcessesGateway, GetAllOverallProcessesGateway>();
         services.AddScoped<IGetAllCourtsGateway, GetAllCourtsGateway>();
         services.AddScoped<IGetAllPersonsGateway, GetAllPersonsGateway>();
+        services.AddScoped<IReportDossierGateway, ReportDossierGateway>();
+        
         return services;
     }
 }

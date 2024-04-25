@@ -1,0 +1,16 @@
+@page "/reportdossier"
+@using Views.Components.Dossier
+
+<PageTitle>Reporte Expediente</PageTitle>
+
+<ErrorBoundary>
+    <ChildContent>
+        <TitleComp Title="Reporte Expediente"/>
+        <br/>
+        <ReportDossierComp ReportDossier="ViewModel"/>
+        <MudSpacer/>
+    </ChildContent>
+    <ErrorContent>
+        @*TODO: Investigar*@
+    </ErrorContent>
+</ErrorBoundary>

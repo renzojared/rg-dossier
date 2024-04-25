@@ -35,11 +35,11 @@ public class ReportDossierInstance
         InternalCode = request.FilterDocument?.InternalCode ?? string.Empty;
         NumberDossier = request.FilterDocument?.NumberDossier ?? 0;
 
-        DossierPersonType = request.FilerPerson?.DossierPersonType ?? 0;
-        DocumentType = request.FilerPerson?.DocumentType ?? 0;
-        DocumentNumber = request.FilerPerson?.DocumentNumber ?? string.Empty;
-        Names = request.FilerPerson?.Names ?? string.Empty;
-        Surnames = request.FilerPerson?.Surnames ?? string.Empty;
+        DossierPersonType = request.FilterPerson?.DossierPersonType ?? 0;
+        DocumentType = request.FilterPerson?.DocumentType ?? 0;
+        DocumentNumber = request.FilterPerson?.DocumentNumber ?? string.Empty;
+        Names = request.FilterPerson?.Names ?? string.Empty;
+        Surnames = request.FilterPerson?.Surnames ?? string.Empty;
         
         StartDate = request.FilterDate?.StartDate ?? new DateTime(1900, 1, 1);
         EndDate = request.FilterDate?.EndDate ?? new DateTime(2500, 1, 1);

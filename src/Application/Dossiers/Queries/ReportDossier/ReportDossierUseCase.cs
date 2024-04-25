@@ -22,8 +22,10 @@ internal class ReportDossierUseCase(
                     (instance.VolumeNumber == 0 || s.VolumeNumber == instance.VolumeNumber) &&
                     (instance.InternalCode == string.Empty || s.InternalCode == instance.InternalCode) &&
                     (instance.NumberDossier == 0 || s.Number == instance.NumberDossier) &&
-                    (instance.StartDate.Date == new DateTime(1900, 1, 1) || s.StartDate.Date >= instance.StartDate.Date) &&
-                    (instance.EndDate.Date == new DateTime(2500, 1, 1) || !s.EndDate.HasValue || s.EndDate.Value.Date <= instance.EndDate.Date) &&
+                    (instance.StartDate.Date == new DateTime(1900, 1, 1) ||
+                     s.StartDate.Date >= instance.StartDate.Date) &&
+                    (instance.EndDate.Date == new DateTime(2500, 1, 1) || !s.EndDate.HasValue ||
+                     s.EndDate.Value.Date <= instance.EndDate.Date) &&
                     (instance.Year == 0 || s.Year == instance.Year) &&
                     (instance.DossierState == 0 || s.State == instance.DossierState) &&
                     (instance.DossierPersonType == 0 ||
@@ -33,15 +35,22 @@ internal class ReportDossierUseCase(
                              .Any(dp =>
                                  dp.DossierPersonType == instance.DossierPersonType &&
                                  (instance.DocumentType == 0 || instance.DocumentType == dp.Person.DocumentType) &&
-                                 (instance.DocumentNumber == string.Empty || instance.DocumentNumber == dp.Person.DocumentNumber) &&
-                                 (instance.Names == string.Empty || dp.Person.OnlyNames.Contains(instance.Names)) &&
-                                 (instance.Surnames == string.Empty || dp.Person.OnlySurnames.Contains(instance.Surnames)))) ||
+                                 (instance.DocumentNumber == string.Empty ||
+                                  instance.DocumentNumber == dp.Person.DocumentNumber) &&
+                                 (instance.Names == string.Empty ||
+                                  (dp.Person.FirstName + " " + dp.Person.SecondName).Contains(instance.Names)) &&
+                                 (instance.Surnames == string.Empty ||
+                                  (dp.Person.PaternalSurname + " " + dp.Person.MaternalSurname).Contains(
+                                      instance.Surnames)))) ||
                      (
                          !instance.DossierPersonType.IsAllow() &&
                          (instance.DocumentType == 0 || instance.DocumentType == s.Responsible.Person.DocumentType) &&
-                         (instance.DocumentNumber == string.Empty || instance.DocumentNumber == s.Responsible.Person.DocumentNumber) &&
-                         (instance.Names == string.Empty || s.Responsible.Person.OnlyNames.Contains(instance.Names)) &&
-                         (instance.Surnames == string.Empty || s.Responsible.Person.OnlySurnames.Contains(instance.Surnames))
+                         (instance.DocumentNumber == string.Empty ||
+                          instance.DocumentNumber == s.Responsible.Person.DocumentNumber) &&
+                         (instance.Names == string.Empty ||
+                          (s.Responsible.Person.FirstName + " " + s.Responsible.Person.SecondName).Contains(instance.Names, StringComparison.CurrentCultureIgnoreCase)) &&
+                         (instance.Surnames == string.Empty ||
+                          (s.Responsible.Person.PaternalSurname + " " + s.Responsible.Person.MaternalSurname).Contains(instance.Surnames, StringComparison.CurrentCultureIgnoreCase))
                      )
                     )).ToListAsync(cancellationToken);
 

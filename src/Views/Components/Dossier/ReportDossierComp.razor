@@ -1,0 +1,211 @@
+@using Domain.DTOs.Dossiers.ReportDossier
+<MudTabs Elevation="1"
+         Position="Position.Top"
+         Outlined="true"
+         Border="true"
+         Rounded="true"
+         ApplyEffectsToContainer="true">
+    <MudTabPanel Icon="@Icons.Material.Filled.Group"
+                 Text="Grupo">
+        <ChildContent>
+            <MudGrid Class="pt-4 px-4 pb-4">
+                <MudItem xs="12"
+                         sm="6"
+                         md="3">
+                    <MudNumericField Label="Tipo Proceso"
+                                     HideSpinButtons="true"
+                                     @bind-Value="ReportDossier.OverallProcessId"
+                                     Variant="Variant.Outlined"
+                                     For="@(()=> ReportDossier.OverallProcessId)"/>
+                </MudItem>
+                <MudItem xs="12"
+                         sm="6"
+                         md="3">
+                    <MudNumericField Label="Tipo Materia"
+                                     HideSpinButtons="true"
+                                     @bind-Value="ReportDossier.MatterId"
+                                     Variant="Variant.Outlined"
+                                     For="@(()=> ReportDossier.MatterId)"/>
+                </MudItem>
+                <MudItem xs="12"
+                         sm="6"
+                         md="3">
+                    <MudNumericField Label="Juzgado"
+                                     HideSpinButtons="true"
+                                     @bind-Value="ReportDossier.CourtId"
+                                     Variant="Variant.Outlined"
+                                     For="@(()=> ReportDossier.CourtId)"/>
+                </MudItem>
+                <MudItem xs="12"
+                         sm="6"
+                         md="3">
+                    <MudNumericField Label="Nro Tomos"
+                                     HideSpinButtons="true"
+                                     @bind-Value="ReportDossier.VolumeNumber"
+                                     Variant="Variant.Outlined"
+                                     For="@(()=> ReportDossier.VolumeNumber)"/>
+                </MudItem>
+            </MudGrid>
+        </ChildContent>
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Filled.DocumentScanner"
+                 Text="Documento">
+        <ChildContent>
+            <MudGrid Class="pt-4 px-4 pb-4">
+                <MudItem xs="12" sm="6" md="6">
+                    <MudTextField Label="Codigo Interno"
+                                  Variant="Variant.Outlined"
+                                  @bind-Value="ReportDossier.InternalCode"
+                                  For="@(() => ReportDossier.InternalCode)"/>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="6">
+                    <MudNumericField Label="Nro Expediente"
+                                     HideSpinButtons="true"
+                                     @bind-Value="ReportDossier.NumberDossier"
+                                     Variant="Variant.Outlined"
+                                     For="@(()=> ReportDossier.NumberDossier)"/>
+                </MudItem>
+            </MudGrid>
+        </ChildContent>
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Filled.Person"
+                 Text="Persona">
+        <ChildContent>
+            <MudGrid Class="pt-4 px-4 pb-4">
+                <MudItem xs="12" sm="6" md="4">
+                    <MudSelect T="DossierPersonType"
+                               Variant="Variant.Outlined"
+                               Label="@(ReportDossier.DossierPersonType.GetTitleEnumDescription())"
+                               AnchorOrigin="Origin.BottomCenter"
+                               @bind-Value="ReportDossier.DossierPersonType">
+                        @foreach (DossierPersonType state in Enum.GetValues(typeof(DossierPersonType)))
+                        {
+                            <MudSelectItem T="DossierPersonType" Value="@state">@state.GetEnumDescription()</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudSelect T="DocumentType"
+                               Variant="Variant.Outlined"
+                               Label="@(ReportDossier.DocumentType.GetTitleEnumDescription())"
+                               AnchorOrigin="Origin.BottomCenter"
+                               @bind-Value="ReportDossier.DocumentType">
+                        @foreach (DocumentType state in Enum.GetValues(typeof(DocumentType)))
+                        {
+                            <MudSelectItem T="DocumentType" Value="@state">@state.GetEnumDescription()</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudTextField Label="Nro documento"
+                                  Variant="Variant.Outlined"
+                                  @bind-Value="ReportDossier.DocumentNumber"
+                                  For="@(() => ReportDossier.DocumentNumber)"/>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudTextField Label="Nombres"
+                                  Variant="Variant.Outlined"
+                                  @bind-Value="ReportDossier.Names"
+                                  For="@(() => ReportDossier.Names)"/>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="4">
+                    <MudTextField Label="Apellidos"
+                                  Variant="Variant.Outlined"
+                                  @bind-Value="ReportDossier.Surnames"
+                                  For="@(() => ReportDossier.Surnames)"/>
+                </MudItem>
+            </MudGrid>
+        </ChildContent>
+    </MudTabPanel>
+    <MudTabPanel Icon="@Icons.Material.Filled.DateRange"
+                 Text="Fechas">
+        <ChildContent>
+            <MudGrid Class="pt-4 px-4 pb-4">
+                <MudItem xs="12" sm="6" md="6">
+                    <MudDateRangePicker Label="Inicio y fin de expediente"
+                                        Variant="Variant.Outlined"
+                                        @bind-DateRange="@ReportDossier.DateRange"
+                                        AutoClose="true"
+                                        PickerVariant="PickerVariant.Dialog"
+                                        Clearable="true"/>
+                </MudItem>
+                <MudItem xs="12" sm="6" md="6">
+                    <MudDatePicker @bind-Date="ReportDossier.YearPicker"
+                                   Variant="Variant.Outlined"
+                                   Label="Año"
+                                   OpenTo="OpenTo.Year"
+                                   FixMonth="DateTime.Today.Month"
+                                   FixDay="DateTime.Today.Day"
+                                   DisableToolbar="true"
+                                   DateFormat="yyyy" />
+                </MudItem>
+                <MudItem xs="12" sm="6" md="6">
+                    <MudSelect T="DossierState"
+                               Variant="Variant.Outlined"
+                               Label="@(ReportDossier.DossierState.GetTitleEnumDescription())"
+                               AnchorOrigin="Origin.BottomCenter"
+                               @bind-Value="ReportDossier.DossierState">
+                        @foreach (DossierState state in Enum.GetValues(typeof(DossierState)))
+                        {
+                            <MudSelectItem T="DossierState" Value="@state">@state.GetEnumDescription()</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
+            </MudGrid>
+        </ChildContent>
+    </MudTabPanel>
+</MudTabs>
+<br/>
+<MudPaper Elevation="0" Class="d-flex justify-center">
+    <MudSpacer/>
+    <MudButtonGroup Color="Color.Primary"
+                    Variant="Variant.Outlined"
+                    OverrideStyles="false">
+        <MudButton Color="Color.Primary"
+                   Variant="Variant.Outlined"
+                   StartIcon="@Icons.Material.Filled.ManageSearch"
+                   OnClick="GetReport"
+                   Disabled="_gettingReport">
+            @if (_gettingReport)
+            {
+                <MudProgressCircular Size="Size.Small" Indeterminate="true"/>
+                <MudText>Buscando</MudText>
+            }
+            else
+            {
+                <MudText>Buscar</MudText>
+            }
+        </MudButton>
+        <MudButton Color="Color.Tertiary"
+                   Variant="Variant.Outlined"
+                   StartIcon="@Icons.Material.Filled.ClearAll"
+                   OnClick="ResetValues">
+            <MudText>Limpiar</MudText>
+        </MudButton>
+    </MudButtonGroup>
+</MudPaper>
+<br/>
+<MudDataGrid Hover="true"
+             T="ReportDossierResultDto"
+             Items="@ReportDossierResultDtos"
+             FixedHeader="true"
+             Height="400px">
+    <ToolBarContent>
+        <MudText Typo="Typo.h6">Expedientes</MudText>
+    </ToolBarContent>
+    <Columns>
+        <PropertyColumn Property="s => s.Id"/>
+        <PropertyColumn Property="s => s.DossierState"/>
+        <PropertyColumn Property="s => s.InternalCode"/>
+        <PropertyColumn Property="s => s.NumberDossier"/>
+        <PropertyColumn Property="s => s.OverallProcessDescription"/>
+        <PropertyColumn Property="s => s.MatterDescription"/>
+        <PropertyColumn Property="s => s.ResponsibleFullName"/>
+        <PropertyColumn Property="s => s.PlaintiffFullName"/>
+        <PropertyColumn Property="s => s.DefendantFullName"/>
+    </Columns>
+    <PagerContent>
+        <MudDataGridPager PageSizeOptions="new []{5, 10, 25, 50, 100}"
+                          T="ReportDossierResultDto"/>
+    </PagerContent>
+</MudDataGrid>
