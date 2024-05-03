@@ -18,7 +18,7 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(config =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
+if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || app.Environment.IsProduction())
 {
     await app.InitialiseDatabaseAsync();
     app.UseSwagger();

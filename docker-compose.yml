@@ -1,0 +1,66 @@
+﻿networks:
+  dossier-backend:
+  dossier-frontend:
+
+volumes:
+  dossier-database:
+
+services:
+  mssql:
+    container_name: dossier-mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    restart: always
+    environment:
+      ACCEPT_EULA: 'Y'
+      MSSQL_SA_PASSWORD: 'D@cker09'
+      MSSQL_PID: Express
+      MSSQL_TCP_PORT: 1433
+    ports:
+      - 55100:1433
+    networks:
+      - dossier-backend
+    volumes:
+      - dossier-database:/var/opt/mssql/
+
+  webapi:
+    container_name: dossier-webapi
+    image: ${DOCKER_REGISTRY-}dossier/webapi
+    build:
+      context: .
+      dockerfile: src/WebApi/Dockerfile
+    ports:
+      - 55101:443
+    depends_on:
+      - mssql
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: 'https://+;http://+'
+      ASPNETCORE_HTTPS_PORTS: 55101
+      ASPNETCORE_Kestrel__Certificates__Default__Password: 'macdockerpwd'
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+    networks:
+      - dossier-backend
+      - dossier-frontend
+    volumes:
+      - ${HOME}/.aspnet/https:/https/
+
+  webclient:
+    container_name: dossier-webclient
+    image: ${DOCKER_REGISTRY-}dossier/webclient
+    build:
+      context: .
+      dockerfile: src/WebClient/Dockerfile
+    ports:
+      - 55102:443
+    depends_on:
+      - webapi
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: 'https://+;http://+'
+      ASPNETCORE_HTTPS_PORTS: 55102
+      ASPNETCORE_Kestrel__Certificates__Default__Password: 'macdockerpwd'
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/aspnetapp.pfx
+    networks:
+      - dossier-frontend
+    volumes:
+      - ${HOME}/.aspnet/https:/https/
