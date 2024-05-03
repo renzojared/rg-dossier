@@ -70,7 +70,8 @@ public class GovernmentContextInitialiser(
         }
 
         //TODO: USE DOCKER
-        await context.SaveChangesAsync();
+        if (context.ChangeTracker.HasChanges()) 
+            await context.SaveChangesAsync();
     }
 
     private List<OverallProcess> InitialOverallProcesses()
