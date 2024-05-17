@@ -2,20 +2,26 @@ namespace Domain.ValueObjects;
 
 public static class Endpoints
 {
-    private const string Api = $"{nameof(Api)}";
-    //Common
-    private const string Create = $"{nameof(Create)}";
-    private const string GetAll = $"{nameof(GetAll)}";
-    private const string Report = $"{nameof(Report)}";
-    //Entity
-    private const string Dossier = $"{nameof(Dossier)}";
-    private const string OverallProcess = $"{nameof(OverallProcess)}";
-    private const string Court = $"{nameof(Court)}";
-    private const string Person = $"{nameof(Person)}";
-    //Action
-    public const string CreateDossier = $"{Api}/{Dossier}/{Create}";
-    public const string GetAllOverallProcess = $"{Api}/{OverallProcess}/{GetAll}";
-    public const string GetAllCourts = $"{Api}/{Court}/{GetAll}";
-    public const string GetAllPersons = $"{Api}/{Person}/{GetAll}";
-    public const string GetReportDossier = $"{Api}/{Dossier}/{Report}";
+    private const string api = nameof(api);
+
+    #region "Entities"
+    private const string dossier = nameof(dossier);
+    private const string overallprocess = nameof(overallprocess);
+    private const string court = nameof(court);
+    private const string person = nameof(person);
+    #endregion
+
+    #region "Actions"
+    private const string create = nameof(create);
+    private const string getall = nameof(getall);
+    private const string report = nameof(report);
+    #endregion
+
+    #region "Endpoints"
+    public const string CreateDossier = $"{api}/{dossier}/{create}";
+    public const string GetAllOverallProcess = $"{api}/{overallprocess}/{getall}";
+    public const string GetAllCourts = $"{api}/{court}/{getall}";
+    public const string GetAllPersons = $"{api}/{person}/{getall}";
+    public const string GetReportDossier = $"{api}/{dossier}/{report}";
+    #endregion
 }
